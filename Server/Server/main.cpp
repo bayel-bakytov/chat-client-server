@@ -15,13 +15,15 @@ public:
 	int _id;
 };
 
-class roomList {
+class roomsList {
 public:
 	int id;
 	string chat;
 };
 
 vector<ClientsList> clientsList;
+
+string mainChat = "";
 
 int getId(string msg) {
 	int start = 0;
@@ -195,6 +197,7 @@ int main()
 				sendToClient(client, welcomeMsg);
 				
 				syncListClients(client);
+				sendToAllClients(mainChat, master);
 				for (int i = 0; i < master.fd_count; i++) {
 					cout << master.fd_array[i] << endl;
 				}
@@ -247,16 +250,16 @@ int main()
 					}
 					else {
 						// Send message to other clients, and definiately NOT the listening socket
-
 						if (s.find("#") <= s.length()) {
 							ostringstream ss;
 							string msg = getMessage(s, false);
 							int id = getId(s);
 							string nick = getNick(s);
-							ss << nick << ": " << msg << "\r\n";
+							ss <<nick << ": " << msg << "\r\n";
 							string strOut = ss.str();
-							cout << "nick: "<<nick << endl;
+							
 							sendToClient(id, strOut);
+							
 						}
 						else {
 							ostringstream ss;
@@ -264,6 +267,8 @@ int main()
 							string nick = getNick(s);
 							ss << nick << ": " << msg << "\r\n";
 							sendToAllClients(ss.str(), master);
+							mainChat += "^" + ss.str();
+							cout << mainChat;
 						}
 					}
 				}

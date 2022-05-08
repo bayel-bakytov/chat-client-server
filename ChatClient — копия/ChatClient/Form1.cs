@@ -82,6 +82,13 @@ namespace ChatClient
                         } else if (str[0] == '%') {
                             string[] _str = str.Split('@');
                             label1.Text = _str[1];
+                        } else if (str[0] == '^') {
+                            listBox1.Items.Clear();
+                            string[] _str = str.Split('^');
+                            foreach (string s in _str)
+                            {
+                                listBox1.Items.Add(s);
+                            }
                         }
                         else
                         {
