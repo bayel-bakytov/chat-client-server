@@ -30,13 +30,20 @@ int getId(string msg) {
 	return id;
 }
 
-string getNick(SOCKET sock) {
-	string nick;
-	for (int i = 0; i < clientsList.size(); i++) {
-		if (clientsList[i]._id == sock) {
-			return clientsList[i].login;
-		}
-	}
+//string getNick(SOCKET sock) {
+//	string nick;
+//	cout << sock;
+//	for (int i = 0; i < clientsList.size(); i++) {
+//		if (clientsList[i]._id == sock) {
+//			return clientsList[i].login;
+//		}
+//	}
+//	return nick;
+//}
+
+string getNick(string msg) {
+	int start = msg.find("@")+1;
+	string nick = msg.substr(start, msg.length());
 	return nick;
 }
 
@@ -188,6 +195,11 @@ int main()
 				sendToClient(client, welcomeMsg);
 				
 				syncListClients(client);
+				for (int i = 0; i < master.fd_count; i++) {
+					cout << master.fd_array[i] << endl;
+				}
+				
+				
 			}
 			else // It's an inbound message
 			{
@@ -205,39 +217,31 @@ int main()
 				else
 				{
 					string s = string(buf, bytesIn);
-					// Check to see if it's a command. \quit kills the server
-					//if (buf[0] == '\\')
-					//{
-					//	// Is the command quit? 
-					//	string cmd = string(buf, bytesIn);
 
-					//	if (cmd == "\\quit")
-					//	{
-					//		running = false;
-					//		break;
-					//	}
-
-					//	// Unknown command
-					//	continue;
-					//}
 					// if someone signs up
 					if (buf[0] == '/') {
 						newClient(s,sock);
 						for (int i = 0; i < master.fd_count; i++) {
 							syncListClients(master.fd_array[i]);
 						}
-						for (int i = 0; i < clientsList.size(); i++) {
-							cout << "login: " << clientsList[i].login << endl;
-							cout <<"password:"<< clientsList[i].password << endl;
-						}
 					}
 					//if someone signs in
 					else if (buf[0] == '\\') {
 						if (checkAuth(s)) {
-							sendToClient(sock, "+");
+							sendToClient(sock, "+@"+getLogin(s)+"*"+getPassword(s));
 						}
 						else {
 							sendToClient(sock, "-");
+						}
+						
+					}
+					else if (buf[0] == '$') {
+						for (int i = 0; i < clientsList.size(); i++) {
+							if (clientsList[i].login == getLogin(s) && clientsList[i].password == getPassword(s)) {
+								clientsList[i]._id == sock;
+								sendToClient(sock, "%@"+clientsList[i].login);
+								break;
+							}
 						}
 						
 					}
@@ -248,15 +252,16 @@ int main()
 							ostringstream ss;
 							string msg = getMessage(s, false);
 							int id = getId(s);
-							string nick = getNick(sock);
+							string nick = getNick(s);
 							ss << nick << ": " << msg << "\r\n";
 							string strOut = ss.str();
+							cout << "nick: "<<nick << endl;
 							sendToClient(id, strOut);
 						}
 						else {
 							ostringstream ss;
 							string msg = getMessage(s, true);
-							string nick = getNick(sock);
+							string nick = getNick(s);
 							ss << nick << ": " << msg << "\r\n";
 							sendToAllClients(ss.str(), master);
 						}

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChatClient;
+
 namespace ChatClient
 {
     public partial class SignIn : Form
@@ -17,7 +18,10 @@ namespace ChatClient
         /// The .net wrapper around WinSock sockets.
         /// </summary>
         TcpClient _client;
+        Form1 form1 = new Form1();
 
+        public static string login;
+        public static string password;
         /// <summary>
         /// Buffer to store incoming messages from the server.
         /// </summary>
@@ -68,10 +72,12 @@ namespace ChatClient
                     {
                         if (str[0] == '+')
                         {
-                            label4.Text = str;
-                            Form1 f = new Form1();
-                            f.Show();
-                            this.Visible = false;
+                            string[] _str = str.Split('@','*');
+                            form1.test(_str[2], _str[1]);
+                            
+                            form1.Show();
+                            
+                            //this.Visible = false;
                         }
                         else
                         {
@@ -80,7 +86,7 @@ namespace ChatClient
                         
                     }));
                 }
-
+                
                 // Clear the buffer and start listening again
                 Array.Clear(_buffer, 0, _buffer.Length);
                 _client.GetStream().BeginRead(_buffer,

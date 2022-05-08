@@ -17,8 +17,7 @@ namespace ChatClient
         /// <summary>
         /// The .net wrapper around WinSock sockets.
         /// </summary>
-        TcpClient _client;
-        SignIn signForm = new SignIn();
+        public TcpClient _client;
         /// <summary>
         /// Buffer to store incoming messages from the server.
         /// </summary>
@@ -37,7 +36,6 @@ namespace ChatClient
             // Connect to the remote server. The IP address and port # could be
             // picked up from a settings file.
             _client.Connect("26.253.250.211", 54000);
-
         }
 
 
@@ -47,14 +45,15 @@ namespace ChatClient
 
             var msg = Encoding.ASCII.GetBytes("/@" + textBox1.Text + "*" + textBox2.Text);
             _client.GetStream().Write(msg, 0, msg.Length);
-
-            signForm.Show();
+            SignIn signIn = new SignIn();
+            signIn.Show();
             this.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            signForm.Show();
+            SignIn signIn = new SignIn();
+            signIn.Show();
             this.Visible = false;
         }
     }

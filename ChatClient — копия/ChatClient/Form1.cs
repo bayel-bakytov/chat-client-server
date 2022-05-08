@@ -11,7 +11,6 @@ namespace ChatClient
         /// The .net wrapper around WinSock sockets.
         /// </summary>
         TcpClient _client;
-
         /// <summary>
         /// Buffer to store incoming messages from the server.
         /// </summary>
@@ -21,6 +20,18 @@ namespace ChatClient
         {
             InitializeComponent();
             _client = new TcpClient();
+        }
+
+        public void test(string p, string l)
+        {
+            label2.Text = p;
+            label3.Text = l;
+
+        }
+
+        public void auth() {
+            var msg = Encoding.ASCII.GetBytes("$@" + label3.Text + "*" + label2.Text);
+            _client.GetStream().Write(msg, 0, msg.Length);
         }
 
         protected override void OnShown(EventArgs e)
@@ -68,6 +79,9 @@ namespace ChatClient
                             {
                                 listBox2.Items.Add(s);
                             }
+                        } else if (str[0] == '%') {
+                            string[] _str = str.Split('@');
+                            label1.Text = _str[1];
                         }
                         else
                         {
@@ -90,7 +104,7 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var msg = Encoding.ASCII.GetBytes(textBox1.Text);
+            var msg = Encoding.ASCII.GetBytes(textBox1.Text+"@"+label3.Text);
             _client.GetStream().Write(msg, 0, msg.Length);
 
             // Clear the text box and set it's focus

@@ -1,13 +1,17 @@
 ﻿  main.cpp
 D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(28,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(44,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(50,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(54,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(60,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(66,20): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(68,47): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(73,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(88,11): warning C4244: =: преобразование "SOCKET" в "int", возможна потеря данных
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(225,25): warning C4018: <: несоответствие типов со знаком и без знака
-D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(282,44): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(45,29): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(51,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(52,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(58,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(62,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(68,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(74,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(76,47): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(81,43): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(96,11): warning C4244: =: преобразование "SOCKET" в "int", возможна потеря данных
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(198,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(224,25): warning C4018: <: несоответствие типов со знаком и без знака
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(241,28): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+D:\Client\Новая папка\csharp-chat-clients\Server\Server\main.cpp(288,44): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
   Server.vcxproj -> D:\Client\Новая папка\csharp-chat-clients\Server\x64\Debug\Server.exe
